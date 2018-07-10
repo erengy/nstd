@@ -26,40 +26,40 @@ SOFTWARE.
 
 namespace nstd {
 
-bool isalnum(char c) {
+constexpr bool isalnum(const char c) {
   return ('0' <= c && c <= '9') ||
          ('A' <= c && c <= 'Z') ||
          ('a' <= c && c <= 'z');
 }
 
-bool isalpha(char c) {
+constexpr bool isalpha(const char c) {
   return ('A' <= c && c <= 'Z') ||
          ('a' <= c && c <= 'z');
 }
 
-bool islower(char c) {
+constexpr bool islower(const char c) {
   return 'a' <= c && c <= 'z';
 }
 
-bool isupper(char c) {
+constexpr bool isupper(const char c) {
   return 'A' <= c && c <= 'Z';
 }
 
-bool isdigit(char c) {
+constexpr bool isdigit(const char c) {
   return '0' <= c && c <= '9';
 }
 
-bool isxdigit(char c) {
+constexpr bool isxdigit(const char c) {
   return ('0' <= c && c <= '9') ||
          ('A' <= c && c <= 'F') ||
          ('a' <= c && c <= 'f');
 }
 
-bool iscntrl(char c) {
+constexpr bool iscntrl(const char c) {
   return (0x00 <= c && c <= 0x1F) || c == 0x7F;
 }
 
-bool isgraph(char c) {
+constexpr bool isgraph(const char c) {
   return ( '0' <= c && c <=  '9') ||
          ( 'A' <= c && c <=  'Z') ||
          ( 'a' <= c && c <=  'z') ||
@@ -69,7 +69,7 @@ bool isgraph(char c) {
          (0x7B <= c && c <= 0x7E);
 }
 
-bool isspace(char c) {
+constexpr bool isspace(const char c) {
   return c ==  ' ' ||  // space
          c == '\f' ||  // form feed
          c == '\n' ||  // line feed
@@ -78,11 +78,11 @@ bool isspace(char c) {
          c == '\v';    // vertical tab
 }
 
-bool isblank(char c) {
+constexpr bool isblank(const char c) {
   return c == ' ' || c == '\t';
 }
 
-bool isprint(char c) {
+constexpr bool isprint(const char c) {
   return ( '0' <= c && c <=  '9') ||
          ( 'A' <= c && c <=  'Z') ||
          ( 'a' <= c && c <=  'z') ||
@@ -93,18 +93,18 @@ bool isprint(char c) {
                        c ==  ' ';
 }
 
-bool ispunct(char c) {
+constexpr bool ispunct(const char c) {
   return (0x21 <= c && c <= 0x2F) ||  // !"#$%&'()*+,-./
          (0x3A <= c && c <= 0x40) ||  // :;<=>?@
          (0x5B <= c && c <= 0x60) ||  // [\]^_`
          (0x7B <= c && c <= 0x7E);    // {|}~
 }
 
-char tolower(char c) {
+constexpr char tolower(const char c) {
   return ('A' <= c && c <= 'Z') ? c + ('a' - 'A') : c;
 }
 
-char toupper(char c) {
+constexpr char toupper(const char c) {
   return ('a' <= c && c <= 'z') ? c - ('a' - 'A') : c;
 }
 
