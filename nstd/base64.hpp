@@ -69,8 +69,9 @@ std::string decode(const std::string_view input) {
   std::string output((input.size() / 4) * 3, '\0');
 
   const size_t size = input.find_last_not_of(padding) + 1;
+  size_t output_size = 0;
 
-  for (size_t i = 0, o = 0; i < size; i += 4) {
+  for (size_t i = 0; i < size; i += 4) {
     const bool b2 = i + 2 < size;
     const bool b3 = i + 3 < size;
 
@@ -79,9 +80,13 @@ std::string decode(const std::string_view input) {
     if (b2)  s |= static_cast<uint32_t>(alphabet_index[input[i + 2]]) <<  6;
     if (b3)  s |= static_cast<uint32_t>(alphabet_index[input[i + 3]]);
 
-            output[o++] = static_cast<char>((s >> 16) & 0xFF);
-    if (b2) output[o++] = static_cast<char>((s >>  8) & 0xFF);
-    if (b3) output[o++] = static_cast<char>( s        & 0xFF);
+            output[output_size++] = static_cast<char>((s >> 16) & 0xFF);
+    if (b2) output[output_size++] = static_cast<char>((s >>  8) & 0xFF);
+    if (b3) output[output_size++] = static_cast<char>( s        & 0xFF);
+  }
+
+  if (output.size() > output_size) {
+    output.resize(output_size);
   }
 
   return output;
