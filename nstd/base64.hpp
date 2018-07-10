@@ -27,9 +27,11 @@ SOFTWARE.
 #include <algorithm>
 #include <array>
 #include <string>
+#include <string_view>
 
-namespace nstd {
-namespace base64 {
+namespace nstd::base64 {
+
+namespace detail {
 
 const std::array<char, 64> alphabet{
   'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
@@ -59,7 +61,11 @@ const std::array<char, 256> alphabet_index{
 
 constexpr char padding = '=';
 
-std::string decode(const std::string& input) {
+}  // namespace detail
+
+std::string decode(const std::string_view input) {
+  using namespace detail;
+
   std::string output((input.size() / 4) * 3, '\0');
 
   const size_t size = input.find_last_not_of(padding) + 1;
@@ -81,7 +87,9 @@ std::string decode(const std::string& input) {
   return output;
 }
 
-std::string encode(const std::string& input) {
+std::string encode(const std::string_view input) {
+  using namespace detail;
+
   std::string output(((input.size() + 2) / 3) * 4, '\0');
 
   for (size_t i = 0, o = 0; i < input.size(); i += 3) {
@@ -101,14 +109,16 @@ std::string encode(const std::string& input) {
   return output;
 }
 
-bool validate(const std::string& input) {
+bool validate(const std::string_view input) {
+  using namespace detail;
+
   if (input.empty() || input.size() % 4 != 0) {
     return false;
   }
 
   const size_t size = input.find_last_not_of(padding);
 
-  if (size == std::string::npos || size <= input.size() - 4) {
+  if (size == std::string_view::npos || size <= input.size() - 4) {
     return false;
   }
 
@@ -121,5 +131,4 @@ bool validate(const std::string& input) {
       });
 }
 
-}  // namespace base64
-}  // namespace nstd
+}  // namespace nstd::base64
