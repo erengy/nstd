@@ -5,7 +5,7 @@
 #include <string_view>
 #include <vector>
 
-#include "../nstd/base64.hpp"
+#include "../include/nstd/base64.hpp"
 
 namespace {
 

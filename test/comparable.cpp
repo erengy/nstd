@@ -1,7 +1,7 @@
 #include <cassert>
 #include <iostream>
 
-#include "../nstd/comparable.hpp"
+#include "../include/nstd/comparable.hpp"
 
 namespace {
 

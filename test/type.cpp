@@ -3,7 +3,7 @@
 #include <iostream>
 #include <limits>
 
-#include "../nstd/type.hpp"
+#include "../include/nstd/type.hpp"
 
 namespace {
 
