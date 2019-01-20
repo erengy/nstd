@@ -1,11 +1,10 @@
 #include <cassert>
+#include <functional>
 #include <iostream>
 #include <limits>
 #include <string>
 #include <string_view>
 #include <vector>
-
-#include <regex>
 
 #include "../include/nstd/string.hpp"
 #include "../include/nstd/type.hpp"
@@ -19,6 +18,30 @@ void test_between() {
 void test_contains() {
   assert(nstd::contains("abcd", "bc"));
   assert(nstd::contains("abcd", 'b'));
+}
+
+template <typename T>
+void test_conversion(std::function<T(std::string_view)> f) {
+  const std::vector<T> values{
+      std::numeric_limits<T>::min(),
+      static_cast<T>(-1),
+      static_cast<T>(0),
+      static_cast<T>(1),
+      std::numeric_limits<T>::max(),
+    };
+  for (const auto value : values) {
+    assert(f(nstd::to_string(value)) == value);
+  }
+}
+void test_conversion() {
+  test_conversion<int>(nstd::to_int);
+  test_conversion<int8_t>(nstd::to_int8);
+  test_conversion<int16_t>(nstd::to_int16);
+  test_conversion<int32_t>(nstd::to_int32);
+  test_conversion<unsigned int>(nstd::to_uint);
+  test_conversion<uint8_t>(nstd::to_uint8);
+  test_conversion<uint16_t>(nstd::to_uint16);
+  test_conversion<uint32_t>(nstd::to_uint32);
 }
 
 void test_join() {
@@ -149,6 +172,7 @@ void test_transform() {
 int main() {
   test_between();
   test_contains();
+  test_conversion();
   test_join();
   test_partition();
   test_remove_affix();

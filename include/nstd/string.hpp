@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "string/constants.hpp"
+#include "string/conversion.hpp"
 #include "string/predicates.hpp"
 #include "string/replace.hpp"
 #include "string/split.hpp"
