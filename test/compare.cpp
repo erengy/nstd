@@ -1,12 +1,12 @@
 #include <cassert>
 #include <iostream>
 
-#include "../include/nstd/comparable.hpp"
+#include "../include/nstd/compare.hpp"
 
 namespace {
 
 void test_compare_int() {
-  class Integer : public nstd::comparable<Integer> {
+  class Integer : public nstd::Comparable<Integer> {
   public:
     constexpr Integer(int value) : value_{value} {}
     constexpr int value() const { return value_; }
