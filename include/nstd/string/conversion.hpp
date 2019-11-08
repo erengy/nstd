@@ -3,6 +3,7 @@
 #include <array>
 #include <charconv>
 #include <cstdint>
+#include <limits>
 #include <string>
 #include <string_view>
 
@@ -19,10 +20,11 @@ T from_chars(const std::string_view str) {
 
 template <typename T>
 std::string to_chars(const T value) {
-  std::array<char, 16> str;
-  const auto result = std::to_chars(str.data(), str.data() + str.size(), value);
-  return result.ec == std::errc() ?
-      std::string(str.data(), result.ptr - str.data()) : std::string{};
+  std::array<char, std::numeric_limits<T>::digits10 + 2> str;
+  const auto [ptr, errc] = std::to_chars(
+      str.data(), str.data() + str.size(), value);
+  return errc == std::errc() ?
+      std::string(str.data(), ptr - str.data()) : std::string{};
 }
 
 }  // namespace detail

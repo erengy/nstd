@@ -38,10 +38,12 @@ void test_conversion() {
   test_conversion<int8_t>(nstd::to_int8);
   test_conversion<int16_t>(nstd::to_int16);
   test_conversion<int32_t>(nstd::to_int32);
+  test_conversion<int64_t>(nstd::to_int64);
   test_conversion<unsigned int>(nstd::to_uint);
   test_conversion<uint8_t>(nstd::to_uint8);
   test_conversion<uint16_t>(nstd::to_uint16);
   test_conversion<uint32_t>(nstd::to_uint32);
+  test_conversion<uint64_t>(nstd::to_uint64);
 }
 
 void test_join() {
