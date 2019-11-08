@@ -17,8 +17,9 @@ enum class Strip {
 
 using string_predicate_t = std::function<bool(const char)>;
 
-std::string_view strip(std::string_view str, const std::string_view chars,
-                       const Strip strip_position) {
+inline std::string_view strip(std::string_view str,
+                              const std::string_view chars,
+                              const Strip strip_position) {
   if (strip_position == Strip::Left || strip_position == Strip::Both) {
     const auto pos = str.find_first_not_of(chars);
     if (pos != std::string_view::npos && pos > 0) {
@@ -34,9 +35,9 @@ std::string_view strip(std::string_view str, const std::string_view chars,
   return str;
 }
 
-std::string_view strip_if(std::string_view str,
-                          const detail::string_predicate_t predicate,
-                          const Strip strip_position) {
+inline std::string_view strip_if(std::string_view str,
+                                 const detail::string_predicate_t predicate,
+                                 const Strip strip_position) {
   if (strip_position == Strip::Left || strip_position == Strip::Both) {
     const auto it = std::find_if_not(str.begin(), str.end(), predicate);
     if (it != str.end() && it != str.begin()) {
@@ -54,45 +55,45 @@ std::string_view strip_if(std::string_view str,
 
 }  // namespace detail
 
-std::string_view strip(const std::string_view str) {
+inline std::string_view strip(const std::string_view str) {
   return detail::strip(str, string_constants::whitespace, detail::Strip::Both);
 }
 
-std::string_view strip(const std::string_view str,
-                       const std::string_view chars) {
+inline std::string_view strip(const std::string_view str,
+                              const std::string_view chars) {
   return detail::strip(str, chars, detail::Strip::Both);
 }
 
-std::string_view strip_if(const std::string_view str,
-                          const detail::string_predicate_t predicate) {
+inline std::string_view strip_if(const std::string_view str,
+                                 const detail::string_predicate_t predicate) {
   return detail::strip_if(str, predicate, detail::Strip::Both);
 }
 
-std::string_view strip_left(const std::string_view str) {
+inline std::string_view strip_left(const std::string_view str) {
   return detail::strip(str, string_constants::whitespace, detail::Strip::Left);
 }
 
-std::string_view strip_left(const std::string_view str,
-                            const std::string_view chars) {
+inline std::string_view strip_left(const std::string_view str,
+                                   const std::string_view chars) {
   return detail::strip(str, chars, detail::Strip::Left);
 }
 
-std::string_view strip_left_if(const std::string_view str,
-                               const detail::string_predicate_t predicate) {
+inline std::string_view strip_left_if(
+    const std::string_view str, const detail::string_predicate_t predicate) {
   return detail::strip_if(str, predicate, detail::Strip::Left);
 }
 
-std::string_view strip_right(const std::string_view str) {
+inline std::string_view strip_right(const std::string_view str) {
   return detail::strip(str, string_constants::whitespace, detail::Strip::Right);
 }
 
-std::string_view strip_right(const std::string_view str,
-                             const std::string_view chars) {
+inline std::string_view strip_right(const std::string_view str,
+                                    const std::string_view chars) {
   return detail::strip(str, chars, detail::Strip::Right);
 }
 
-std::string_view strip_right_if(const std::string_view str,
-                                const detail::string_predicate_t predicate) {
+inline std::string_view strip_right_if(
+    const std::string_view str, const detail::string_predicate_t predicate) {
   return detail::strip_if(str, predicate, detail::Strip::Right);
 }
 

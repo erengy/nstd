@@ -8,8 +8,8 @@ namespace nstd {
 
 namespace detail {
 
-std::string replace(std::string str, const std::string_view old,
-                    const std::string_view replacement, int count) {
+inline std::string replace(std::string str, const std::string_view old,
+                           const std::string_view replacement, int count) {
   if (count < 1 || old.empty() || old.size() > str.size() ||
       old == replacement) {
     return str;
@@ -29,15 +29,17 @@ std::string replace(std::string str, const std::string_view old,
 
 }  // namespace detail
 
-[[nodiscard]] std::string replace(std::string str, const std::string_view old,
-                                  const std::string_view replacement) {
+[[nodiscard]] inline std::string replace(std::string str,
+                                         const std::string_view old,
+                                         const std::string_view replacement) {
   constexpr auto count = std::numeric_limits<int>::max();
   return detail::replace(str, old, replacement, count);
 }
 
-[[nodiscard]] std::string replace(std::string str, const std::string_view old,
-                                  const std::string_view replacement,
-                                  int count) {
+[[nodiscard]] inline std::string replace(std::string str,
+                                         const std::string_view old,
+                                         const std::string_view replacement,
+                                         int count) {
   return detail::replace(str, old, replacement, count);
 }
 

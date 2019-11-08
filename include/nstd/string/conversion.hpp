@@ -29,24 +29,24 @@ std::string to_chars(const T value) {
 
 }  // namespace detail
 
-int to_int(const std::string_view str) { return detail::from_chars<int>(str); }
-int8_t to_int8(const std::string_view str) { return detail::from_chars<int8_t>(str); }
-int16_t to_int16(const std::string_view str) { return detail::from_chars<int16_t>(str); }
-int32_t to_int32(const std::string_view str) { return detail::from_chars<int32_t>(str); }
-int64_t to_int64(const std::string_view str) { return detail::from_chars<int64_t>(str); }
-uint8_t to_uint8(const std::string_view str) { return detail::from_chars<uint8_t>(str); }
-unsigned int to_uint(const std::string_view str) { return detail::from_chars<unsigned int>(str); }
-uint16_t to_uint16(const std::string_view str) { return detail::from_chars<uint16_t>(str); }
-uint32_t to_uint32(const std::string_view str) { return detail::from_chars<uint32_t>(str); }
-uint64_t to_uint64(const std::string_view str) { return detail::from_chars<uint64_t>(str); }
+inline int to_int(const std::string_view str) { return detail::from_chars<int>(str); }
+inline int8_t to_int8(const std::string_view str) { return detail::from_chars<int8_t>(str); }
+inline int16_t to_int16(const std::string_view str) { return detail::from_chars<int16_t>(str); }
+inline int32_t to_int32(const std::string_view str) { return detail::from_chars<int32_t>(str); }
+inline int64_t to_int64(const std::string_view str) { return detail::from_chars<int64_t>(str); }
+inline uint8_t to_uint8(const std::string_view str) { return detail::from_chars<uint8_t>(str); }
+inline unsigned int to_uint(const std::string_view str) { return detail::from_chars<unsigned int>(str); }
+inline uint16_t to_uint16(const std::string_view str) { return detail::from_chars<uint16_t>(str); }
+inline uint32_t to_uint32(const std::string_view str) { return detail::from_chars<uint32_t>(str); }
+inline uint64_t to_uint64(const std::string_view str) { return detail::from_chars<uint64_t>(str); }
 
-std::string to_string(const int8_t value) { return detail::to_chars<int8_t>(value); }
-std::string to_string(const int16_t value) { return detail::to_chars<int16_t>(value); }
-std::string to_string(const int32_t value) { return detail::to_chars<int32_t>(value); }
-std::string to_string(const int64_t value) { return detail::to_chars<int64_t>(value); }
-std::string to_string(const uint8_t value) { return detail::to_chars<uint8_t>(value); }
-std::string to_string(const uint16_t value) { return detail::to_chars<uint16_t>(value); }
-std::string to_string(const uint32_t value) { return detail::to_chars<uint32_t>(value); }
-std::string to_string(const uint64_t value) { return detail::to_chars<uint64_t>(value); }
+inline std::string to_string(const int8_t value) { return detail::to_chars<int8_t>(value); }
+inline std::string to_string(const int16_t value) { return detail::to_chars<int16_t>(value); }
+inline std::string to_string(const int32_t value) { return detail::to_chars<int32_t>(value); }
+inline std::string to_string(const int64_t value) { return detail::to_chars<int64_t>(value); }
+inline std::string to_string(const uint8_t value) { return detail::to_chars<uint8_t>(value); }
+inline std::string to_string(const uint16_t value) { return detail::to_chars<uint16_t>(value); }
+inline std::string to_string(const uint32_t value) { return detail::to_chars<uint32_t>(value); }
+inline std::string to_string(const uint64_t value) { return detail::to_chars<uint64_t>(value); }
 
 }  // namespace nstd

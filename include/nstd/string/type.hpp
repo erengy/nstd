@@ -56,12 +56,12 @@ constexpr bool ispunct_string(const std::string_view str) {
   return !str.empty() && std::all_of(str.begin(), str.end(), nstd::ispunct);
 }
 
-[[nodiscard]] std::string tolower_string(std::string str) {
+[[nodiscard]] inline std::string tolower_string(std::string str) {
   std::transform(str.begin(), str.end(), str.begin(), nstd::tolower);
   return str;
 }
 
-[[nodiscard]] std::string toupper_string(std::string str) {
+[[nodiscard]] inline std::string toupper_string(std::string str) {
   std::transform(str.begin(), str.end(), str.begin(), nstd::toupper);
   return str;
 }

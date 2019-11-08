@@ -9,14 +9,14 @@ namespace nstd::base64 {
 
 namespace detail {
 
-const std::array<char, 64> alphabet{
+constexpr std::array<char, 64> alphabet{
   'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
   'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f',
   'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
   'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '/'
 };
 
-const std::array<char, 256> alphabet_index{
+constexpr std::array<char, 256> alphabet_index{
   -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
   -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
   -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 62, -1, -1, -1, 63,
@@ -39,7 +39,7 @@ constexpr char padding = '=';
 
 }  // namespace detail
 
-std::string decode(const std::string_view input) {
+inline std::string decode(const std::string_view input) {
   using namespace detail;
 
   std::string output((input.size() / 4) * 3, '\0');
@@ -68,7 +68,7 @@ std::string decode(const std::string_view input) {
   return output;
 }
 
-std::string encode(const std::string_view input) {
+inline std::string encode(const std::string_view input) {
   using namespace detail;
 
   std::string output(((input.size() + 2) / 3) * 4, '\0');
@@ -90,7 +90,7 @@ std::string encode(const std::string_view input) {
   return output;
 }
 
-bool validate(const std::string_view input) {
+inline bool validate(const std::string_view input) {
   using namespace detail;
 
   if (input.empty() || input.size() % 4 != 0) {

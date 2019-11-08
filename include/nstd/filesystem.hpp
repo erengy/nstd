@@ -8,9 +8,9 @@ namespace nstd {
 
 namespace detail {
 
-bool ifstream(const std::string_view path,
-              const std::ios_base::openmode openmode,
-              std::string& output) {
+inline bool ifstream(const std::string_view path,
+                     const std::ios_base::openmode openmode,
+                     std::string& output) {
   std::ifstream file{path.data(), openmode | std::ios::ate};
 
   if (!file) {
@@ -24,9 +24,9 @@ bool ifstream(const std::string_view path,
   return file.good();
 }
 
-bool ofstream(const std::string_view path,
-              const std::ios_base::openmode openmode,
-              const std::string_view input) {
+inline bool ofstream(const std::string_view path,
+                     const std::ios_base::openmode openmode,
+                     const std::string_view input) {
   std::ofstream file{path.data(), openmode};
 
   if (!file) {
@@ -40,17 +40,19 @@ bool ofstream(const std::string_view path,
 
 }  // namespace detail
 
-bool read_file(const std::string_view path, std::string& output) {
+inline bool read_file(const std::string_view path, std::string& output) {
   constexpr auto openmode = std::ios::in | std::ios::binary;
   return detail::ifstream(path, openmode, output);
 }
 
-bool append_to_file(const std::string_view path, const std::string_view input) {
+inline bool append_to_file(const std::string_view path,
+                           const std::string_view input) {
   constexpr auto openmode = std::ios::out | std::ios::binary | std::ios::app;
   return detail::ofstream(path, openmode, input);
 }
 
-bool write_to_file(const std::string_view path, const std::string_view input) {
+inline bool write_to_file(const std::string_view path,
+                          const std::string_view input) {
   constexpr auto openmode = std::ios::out | std::ios::binary;
   return detail::ofstream(path, openmode, input);
 }

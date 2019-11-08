@@ -4,16 +4,17 @@
 
 namespace nstd::string_constants {
 
-const std::string lowercase = "abcdefghijklmnopqrstuvwxyz";
-const std::string uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const std::string letters = lowercase + uppercase;
+inline const std::string lowercase = "abcdefghijklmnopqrstuvwxyz";
+inline const std::string uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+inline const std::string letters = lowercase + uppercase;
 
-const std::string digits = "0123456789";
-const std::string hexdigits = digits + "abcdefABCDEF";
-const std::string octdigits = "01234567";
+inline const std::string digits = "0123456789";
+inline const std::string hexdigits = digits + "abcdefABCDEF";
+inline const std::string octdigits = "01234567";
 
-const std::string punctuation = R"(!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~)";
-const std::string whitespace = " \t\n\r\v\f";
-const std::string printable = digits + letters + punctuation + whitespace;
+inline const std::string punctuation = R"(!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~)";
+inline const std::string whitespace = " \t\n\r\v\f";
+inline const std::string printable =
+    digits + letters + punctuation + whitespace;
 
 }  // namespace nstd::string_constants

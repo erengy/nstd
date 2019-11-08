@@ -16,9 +16,9 @@
 
 namespace nstd {
 
-std::string_view between(const std::string_view str,
-                         const std::string_view before,
-                         const std::string_view after) {
+inline std::string_view between(const std::string_view str,
+                                const std::string_view before,
+                                const std::string_view after) {
   auto begin = str.find(before);
   if (begin != std::string_view::npos) {
     begin += before.size();
@@ -30,8 +30,8 @@ std::string_view between(const std::string_view str,
   return {};
 }
 
-std::string join(const std::vector<std::string>& container,
-                 const std::string_view delimiter) {
+inline std::string join(const std::vector<std::string>& container,
+                        const std::string_view delimiter) {
   std::string output;
   for (auto it = container.begin(); it != container.end(); ++it) {
     if (!delimiter.empty() && it != container.begin()) {
@@ -42,8 +42,8 @@ std::string join(const std::vector<std::string>& container,
   return output;
 }
 
-std::vector<std::string> partition(const std::string_view str,
-                                   const std::string_view delimiter) {
+inline std::vector<std::string> partition(const std::string_view str,
+                                          const std::string_view delimiter) {
   const auto pos = str.find(delimiter);
   if (pos != std::string_view::npos) {
     return {
@@ -71,7 +71,7 @@ std::vector<std::string> partition(const std::string_view str,
   return str;
 }
 
-std::string repeat(const std::string_view pattern, const size_t n) {
+inline std::string repeat(const std::string_view pattern, const size_t n) {
   std::string output(n * pattern.size(), '\0');
   for (size_t pos = 0; pos < output.size(); pos += n) {
     output.replace(pos, n, pattern);
@@ -79,7 +79,7 @@ std::string repeat(const std::string_view pattern, const size_t n) {
   return output;
 }
 
-std::string_view slice(const std::string_view str, int start, int end) {
+inline std::string_view slice(const std::string_view str, int start, int end) {
   const auto len = static_cast<int>(str.size());
   if (start < 0) {
     start = std::max(start + len, 0);
@@ -92,8 +92,8 @@ std::string_view slice(const std::string_view str, int start, int end) {
   return str.substr(start, end - start);
 }
 
-std::string transform(std::string str,
-                      const std::function<char(const char)> predicate) {
+inline std::string transform(std::string str,
+                             const std::function<char(const char)> predicate) {
   std::transform(str.begin(), str.end(), str.begin(), predicate);
   return str;
 }

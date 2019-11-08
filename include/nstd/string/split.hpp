@@ -16,7 +16,7 @@ using string_predicate_t = std::function<bool(const char)>;
 
 }  // namespace detail
 
-std::vector<std::string> split(std::string_view str) {
+inline std::vector<std::string> split(std::string_view str) {
   std::vector<std::string> output;
 
   while (true) {
@@ -38,8 +38,8 @@ std::vector<std::string> split(std::string_view str) {
   return output;
 }
 
-std::vector<std::string> split(std::string_view str,
-                               const std::string_view delimiter) {
+inline std::vector<std::string> split(std::string_view str,
+                                      const std::string_view delimiter) {
   std::vector<std::string> output;
 
   while (true) {
@@ -55,8 +55,8 @@ std::vector<std::string> split(std::string_view str,
   return output;
 }
 
-std::vector<std::string> split_if(std::string_view str,
-    const detail::string_predicate_t predicate) {
+inline std::vector<std::string> split_if(
+    std::string_view str, const detail::string_predicate_t predicate) {
   std::vector<std::string> output;
 
   while (true) {
