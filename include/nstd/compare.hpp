@@ -2,6 +2,12 @@
 
 namespace nstd {
 
+namespace cmp {
+constexpr int less = -1;
+constexpr int equal = 0;
+constexpr int greater = 1;
+};
+
 template <typename T>
 class Comparable {
 public:
