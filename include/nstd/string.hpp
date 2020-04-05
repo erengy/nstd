@@ -4,6 +4,7 @@
 #include <functional>
 #include <string>
 #include <string_view>
+#include <tuple>
 #include <vector>
 
 #include "string/constants.hpp"
@@ -42,8 +43,8 @@ inline std::string join(const std::vector<std::string>& container,
   return output;
 }
 
-inline std::vector<std::string> partition(const std::string_view str,
-                                          const std::string_view delimiter) {
+inline std::tuple<std::string, std::string, std::string> partition(
+    const std::string_view str, const std::string_view delimiter) {
   const auto pos = str.find(delimiter);
   if (pos != std::string_view::npos) {
     return {
@@ -51,8 +52,9 @@ inline std::vector<std::string> partition(const std::string_view str,
       std::string{delimiter},
       std::string{str.substr(pos + delimiter.size())},
     };
+  } else {
+    return {std::string{str}, {}, {}};
   }
-  return {};
 }
 
 [[nodiscard]] constexpr std::string_view remove_prefix(
